@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { NavBar, Icon, Grid, WhiteSpace, Card, NoticeBar } from 'antd-mobile';
-import axios from 'axios';
+import  fetchJsonp  from  'fetch-jsonp'
 
 const data = [
   {
@@ -53,21 +53,41 @@ const data = [
 
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      title:''
+    this.state = {
+      title: []
     }
   }
 
-  componentDidMount(){
-    var api="https://www.tietongdaojia.com/wx/api/wechat/auth?APPID=1000042&PARAM1=PARAM1&PARAM2=2021010711";
+  componentDidMount() {
 
-    axios.get(api).then((res)=>{console.log(res);
-    this.setState({
-      title:res
-    })
-    }).catch((err)=>{console.log(err);})
+    // let url='/wechat/auth?APPID=1000042&PARAM1=PARAM1&PARAM2=2021010711'
+    // let options={
+    //   method:'GET',
+    //   headers:{
+    //     'Content-Type':'application/json;charset=UTF-8'
+    //   },
+    //   mode:'cors',
+    //   cache:'default'}
+
+    // fetch(url,options)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     this.setState({
+    //       title:data
+    //     })
+    //   })
+
+    let url = 'https://www.tietongdaojia.com/wx/api/wechat/auth?APPID=1000042&PARAM1=PARAM1&PARAM2=2021010711'
+    fetchJsonp(url,
+      {
+        jsonpCallback:"custom_callback"
+    }
+      )
+      .then(res => res.json())
+      .then(data => console.log(data))
 
   }
 
@@ -83,7 +103,11 @@ class App extends React.Component {
             <Icon key="1" type="ellipsis" />,
           ]}>
           显示：{this.state.title}
-          </NavBar>
+        </NavBar>
+
+        <p>
+          {this.state.title}
+        </p>
 
         <WhiteSpace size="lg" />
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
