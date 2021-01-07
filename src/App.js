@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import { NavBar, Icon, Grid, WhiteSpace, Card, NoticeBar } from 'antd-mobile';
+import axios from 'axios';
 
 const data = [
   {
@@ -52,6 +53,24 @@ const data = [
 
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      title:''
+    }
+  }
+
+  componentDidMount(){
+    var api="https://www.tietongdaojia.com/wx/api/wechat/auth?APPID=1000042&PARAM1=PARAM1&PARAM2=2021010711";
+
+    axios.get(api).then((res)=>{console.log(res);
+    this.setState({
+      title:res
+    })
+    }).catch((err)=>{console.log(err);})
+
+  }
+
   render() {
     return (
       <>
@@ -63,7 +82,7 @@ class App extends React.Component {
             <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
             <Icon key="1" type="ellipsis" />,
           ]}>
-          我是导航栏
+          显示：{this.state.title}
           </NavBar>
 
         <WhiteSpace size="lg" />
