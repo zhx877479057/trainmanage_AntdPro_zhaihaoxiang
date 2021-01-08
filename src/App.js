@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { NavBar, Icon, Grid, WhiteSpace, Card, NoticeBar } from 'antd-mobile';
-import axios from 'axios';
+// import axios from 'axios';
 
 const data = [
   {
@@ -54,24 +54,28 @@ const data = [
 
 class App extends React.Component {
   constructor(props) {
-    console.log(props);
+    console.log(props.location.search);
     super(props);
+    var a=props.location.search;
+    var b=a.split('=');
+    console.log(b);
     this.state = {
-      title:[]
+      Id:b[1].split("&")[0],
+      Auter:b[2]
     }
   }
 
-  componentDidMount() {
-    let api = 'https://www.tietongdaojia.com/wx/api/wechat/auth2?APPID=1000042'
-    axios.get(api,{redirect: 'manual'})
-      .then((res) => {
-        console.log(res.data[0]);
-        this.setState({
-          title:res.data[0].name
-        });
-      })
-      .catch((err) => { console.log(err); })
-  }
+  // componentDidMount() {
+  //   let api = 'https://www.tietongdaojia.com/wx/api/wechat/auth2?APPID=1000042'
+  //   axios.get(api,{redirect: 'manual'})
+  //     .then((res) => {
+  //       console.log(res.data[0]);
+  //       this.setState({
+  //         title:res.data[0].name
+  //       });
+  //     })
+  //     .catch((err) => { console.log(err); })
+  // }
 
   render() {
     return (
@@ -80,14 +84,10 @@ class App extends React.Component {
           mode="dark"
           icon={<Icon type="left" />}
           onLeftClick={() => console.log('onLeftClick')}
-          rightContent={[
-            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-            <Icon key="1" type="ellipsis" />,
-          ]}>
-            {this.props.thumb_avatar}
-         {this.props.userid}
+          icon={<img src={this.state.Auter} className="am-icon am-icon-md"></img>}
+          >
+            {this.state.Id}
         </NavBar>
-
         <WhiteSpace size="lg" />
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
           我是一个非常可爱的提示栏。我是一个非常可爱的提示栏。我是一个非常可爱的提示栏。我是一个非常可爱的提示栏。
