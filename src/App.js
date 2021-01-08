@@ -54,6 +54,7 @@ const data = [
 
 class App extends React.Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       title:[]
@@ -61,7 +62,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
     let api = 'https://www.tietongdaojia.com/wx/api/wechat/auth2?APPID=1000042'
     axios.get(api,{redirect: 'manual'})
       .then((res) => {
@@ -84,7 +84,8 @@ class App extends React.Component {
             <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
             <Icon key="1" type="ellipsis" />,
           ]}>
-          显示：{this.state.title}
+            {this.props.thumb_avatar}
+         {this.props.userid}
         </NavBar>
 
         <WhiteSpace size="lg" />
