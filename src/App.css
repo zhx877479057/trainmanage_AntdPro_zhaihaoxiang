@@ -68,3 +68,9 @@
   line-height: 30px;
   width: 100%;
 }
+
+.biaotilantim{
+  font-size:14px;
+  word-wrap:break-word;
+  word-break:normal; 
+}
