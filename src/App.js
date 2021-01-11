@@ -19,7 +19,7 @@ class App extends React.Component {
 
   componentDidMount() {
     var id = this.state.Id
-    let api = 'http://127.0.0.1:3010/personinfo'
+    let api = 'http://122.51.125.90:3010/personinfo'
     axios.get(api, {
       params: {
         id: id
