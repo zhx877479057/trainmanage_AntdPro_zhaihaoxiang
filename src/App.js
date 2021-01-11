@@ -104,10 +104,13 @@ class App extends React.Component {
     if (this.state.msg === 'error') {
       data = '';
     } else if (this.state.query.CountyId === '2010') {
-      if (this.state.Id === "15029273038") {
-        data = [data1, data2, data3, data4, data5, data6, data7, data8, data9]
-      } else {
-        data = [data1, data2]
+      if (
+        this.state.query.姓名 === '翟浩翔'
+        || this.state.query.姓名 === '白飞云'
+        || this.state.query.姓名 === '吕晓卫'
+        || this.state.query.姓名 === '刘丹柯'
+        || this.state.query.姓名 === '黄涛') {
+          data = [data1, data2]
       }
     }
     else {
@@ -127,6 +130,7 @@ class App extends React.Component {
           <p className='biaotilantim'>欢迎{this.state.query.部门}的{this.state.query.姓名}</p>
         </NavBar>
         <WhiteSpace size="lg" />
+        
         {/* <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
           我是一个非常可爱的提示栏。我是一个非常可爱的提示栏。我是一个非常可爱的提示栏。我是一个非常可爱的提示栏。
     </NoticeBar> */}
