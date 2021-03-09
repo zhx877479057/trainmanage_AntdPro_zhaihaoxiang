@@ -34,6 +34,7 @@ class App extends React.Component {
           this.getuerinfo(res.data.mobile)
         })
       .catch((res) => { console.log(res); })
+      
   }
 
   getuerinfo(id) {
